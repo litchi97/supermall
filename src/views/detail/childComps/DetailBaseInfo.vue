@@ -4,9 +4,9 @@
       <span>{{goods.title}}</span>
     </div>
     <div class="info-price">
-      <span class="o-price">{{goods.price}}</span>
-      <span class="n-price">{{goods.lowNowPrice}} ~ </span>
-      <span class="n-price">{{goods.highNowPrice}}</span>
+      <span class="o-price">{{goods.oldPrice}}</span>
+      <span class="n-price">{{goods.realPrice}}  </span>
+      <span class="n-price">{{goods.newPrice}}</span>
 
     </div>
     <div class="info-other">

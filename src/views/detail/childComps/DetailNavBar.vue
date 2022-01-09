@@ -7,7 +7,8 @@
       <div slot="center" class="title">
         <div v-for="(item,index) in title"
              class="title-item"
-             :class="{active:index === currentIndex}" @click="isClick(index)">{{item}}</div>
+             :class="{active:index === currentIndex}"
+             @click="isClick(index)">{{item}}</div>
       </div>
     </nar-bar>
   </div>
@@ -28,13 +29,13 @@ export default {
   },
   methods: {
     isClick(index) {
-      this.currentIndex = index
+      this.currentIndex = index;
+      this.$emit('tabClick', index);
     },
     BackClick() {
       this.$router.back()
-    }
+    },
   }
-
 }
 
 </script>

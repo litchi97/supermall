@@ -13,14 +13,17 @@ export class Goods {
   constructor(itemInfo, columns, services) {
     this.title = itemInfo.title
     this.desc = itemInfo.desc
-    this.price = itemInfo.price
-    this.highNowPrice = itemInfo.highNowPrice
-    this.highPrice = itemInfo.highPrice
-    this.lowNowPrice = itemInfo.lowNowPrice
-    this.lowPrice = itemInfo.lowPrice
+    this.newPrice = itemInfo.price
+    this.oldPrice = itemInfo.lowPrice
     this.columns = columns
     this.services = services
+    this.realPrice = itemInfo.lowNowPrice
   }
+}
+export function getRecommend() {
+  return request({
+    url: '/recommend'
+  })
 }
 
 export class Shop {

@@ -4,7 +4,7 @@
       <div class="header-title">用户评价</div>
       <div class="header-more">更多></div>
     </div>
-    <div class="info-content" v-if="comment && comment.length">
+    <div class="info-content" v-if="comment">
       <div>
         <div class="user">
                     <span>
@@ -38,7 +38,7 @@ export default {
     commentInfo:{
       type: Object,
       default(){
-        return {}
+        return {};
       }
     }
   },
@@ -52,11 +52,12 @@ export default {
       if (typeof date == 'string') {
         return date;
       }
+
       if (!fmt) fmt = "yyyy-MM-dd hh:mm:ss";
+
       if (!date || date == null) return null;
       // 将传入的date准换为时间对象，*1000是为了将秒转成毫秒；
       date = new Date(date *1000);
-      //M+是正则表达式的规则
       let o = {
         'M+': date.getMonth() + 1, // 月份
         'd+': date.getDate(), // 日
@@ -67,11 +68,12 @@ export default {
         'S': date.getMilliseconds() // 毫秒
       }
       if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
-      for (let k in o) {
+      for (var k in o) {
         if (new RegExp('(' + k + ')').test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
       }
       return fmt;
     }
+
   }
 }
 </script>
@@ -118,5 +120,4 @@ export default {
   width: 25%;
   padding-right: 6px;
 }
-
 </style>

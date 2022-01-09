@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-bar">
+  <div class="nav-bar ignore">
     <div class="left"><slot name="left"></slot></div>
     <div class="center"><slot name="center"></slot></div>
     <div class="right"><slot name="right"></slot></div>
@@ -26,6 +26,6 @@ export default {
   }
   .center {
     flex: 1;
-    background-color: #8FBC8F;
+
   }
 </style>

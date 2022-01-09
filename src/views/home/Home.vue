@@ -37,7 +37,7 @@ import {getHomeMultidata,getHomeGoods} from "@/network/home";
 import GoodsList from "../../components/content/goods/GoodsList";
 import Scroll from "../../components/common/scroll/Scroll";
 import BackTop from "../../components/content/backTop/BackTop";
-import {debounce} from "../../common/utils";
+import {itemListenerMixin} from "../../common/mixin";
 
 export default {
   name: "Home",
@@ -50,9 +50,9 @@ export default {
     TabControl,
     GoodsList,
     Scroll,
-    BackTop
-
+    BackTop,
   },
+  mixins: [itemListenerMixin],
   computed: {
     showGoods() {
       return this.goods[this.currentType].list
@@ -71,10 +71,12 @@ export default {
       currentType: 'pop',
       idShowBackTop: false,
       tabOffSetTop: 0,
-      isTabFixed: false
+      isTabFixed: false,
+
     }
   },
   created() {
+    console.log('home created')
     //生命周期：一旦组件创建完就发送请求
     this.getHomeMultidata()
     //请求商品数据
@@ -85,13 +87,10 @@ export default {
 
 
   },
-  mounted() {
-    //监听图片加载
-    const refresh = debounce(this.$refs.scroll.refresh,500)
-    this.$bus.$on('itemImageLoad',() => {
-     refresh()
-    })
+  deactivated() {
+    this.$bus.$off('itemImgLoad',this.itemImgListener)
   },
+
   methods: {
     getHomeMultidata() {
       getHomeMultidata().then(res => {
